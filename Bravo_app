@@ -1,0 +1,55 @@
+import pandas as pd
+
+# Definición de los datos
+datos = {
+    'Productos': ['Pan', 'Agua', 'Cebolla', 'Ajo', 'Batata', 'Platano', 'Aceite', 'Sal', 'Limon', 'Yuca'],
+    'Precio': [90, 15, 45, 50, 30, 30, 450, 30, 30, 20],
+    'Cantidad': ['biga', 'botella', 'libra', 'libra', 'libra', 'libra', 'unidad', 'medio_galon', 'pote', 'libra']
+}
+
+# Crear el DataFrame
+df = pd.DataFrame(datos)
+
+# 1. Seleccionar una columna completa
+productos = df['Productos']
+print("Columna 'Productos':\n", productos)
+
+# 2. Seleccionar varias columnas
+productos_y_precios = df[['Productos', 'Precio']]
+print("\nColumnas 'Productos' y 'Precio':\n", productos_y_precios)
+
+# 3. Seleccionar una fila específica por su índice
+primera_fila = df.iloc[0]
+print("\nPrimera fila:\n", primera_fila)
+
+# 4. Seleccionar varias filas por su índice
+primeras_dos_filas = df.iloc[:2]
+print("\nPrimeras dos filas:\n", primeras_dos_filas)
+
+# 5. Seleccionar un valor específico usando iloc (por posición)
+valor_especifico = df.iloc[0, 1]  # Valor de la primera fila, segunda columna
+print("\nValor específico (precio del primer producto usando iloc):", valor_especifico)
+
+# 6. Seleccionar un valor específico usando at (por etiquetas)
+valor_especifico_at = df.at[0, 'Precio']  # Valor en la primera fila, columna 'Precio'
+print("\nValor específico (precio del primer producto usando at):", valor_especifico_at)
+
+# 7. Filtrar datos según una condición
+productos_caros = df[df['Precio'] > 50]
+print("\nProductos con precio mayor a 50:\n", productos_caros)
+
+# 8. Acceder a varias filas y columnas simultáneamente usando loc
+sub_df_loc = df.loc[0:2, ['Productos', 'Precio']]
+print("\nSub DataFrame (primeras 3 filas y columnas 'Productos' y 'Precio' usando loc):\n", sub_df_loc)
+
+# 9. Acceder a varias filas y columnas simultáneamente usando iloc
+sub_df_iloc = df.iloc[0:2, 0:2]  # Primeras dos filas y primeras dos columnas
+print("\nSub DataFrame (primeras 2 filas y columnas usando iloc):\n", sub_df_iloc)
+
+# 10. Acceder a una celda específica (Producto en la primera fila)
+primer_producto = df.loc[0, 'Productos']
+print("\nPrimer producto (usando loc):", primer_producto)
+
+# 11. Modificar un valor específico
+df.at[0, 'Precio'] = 100  # Cambiar el precio del primer producto a 100
+print("\nDataFrame después de modificar el precio del primer producto:\n", df)
